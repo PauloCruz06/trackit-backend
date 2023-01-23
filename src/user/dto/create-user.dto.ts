@@ -2,7 +2,6 @@ import { User } from "../entities/user.entity";
 import { 
     IsEmail,
     IsString,
-    IsFQDN,
     Length,
     MinLength,
     Matches
@@ -16,7 +15,7 @@ export class CreateUserDto extends User {
     @Length(3, 21)
     name: string;
 
-    @IsFQDN()
+    @IsString()
     image: string;
 
     @IsString()
