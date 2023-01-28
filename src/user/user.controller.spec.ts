@@ -29,17 +29,24 @@ describe('UserController', () => {
   });
 
   describe('create', () => {
-    it('should create a new user', async () => {
-      const body: CreateUserDto = {
-        email: faker.internet.email(),
-        name: faker.name.firstName(),
-        image: faker.internet.url(),
-        password: faker.internet.password(),
-      };
+    const body: CreateUserDto = {
+      email: faker.internet.email(),
+      name: faker.name.firstName(),
+      image: faker.internet.url(),
+      password: faker.internet.password(),
+    };
 
+    it('should create a new user', async () => {
       await controller.create(body);
 
       expect(service.create).toHaveBeenCalledTimes(1);
+      expect(service.create).toHaveBeenCalledWith(body);
+    });
+
+    it('should throw error an exception', () => {
+      jest.spyOn(service, 'create').mockRejectedValueOnce(new Error());
+
+      expect(controller.create(body)).rejects.toThrowError();
     });
   });
 });
