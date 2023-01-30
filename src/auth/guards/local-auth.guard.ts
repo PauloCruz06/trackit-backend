@@ -4,6 +4,6 @@ import { AuthGuard } from '@nestjs/passport';
 @Injectable()
 export class LocalAuthGuard extends AuthGuard('local') {
   canActivate(context: ExecutionContext) {
-    return super.canActivate(context); // Retorna o objeto(constructor) AuthGuard (classe pai)
+    return super.canActivate(context);
   }
 }
